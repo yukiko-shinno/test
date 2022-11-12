@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+</head>
+
+<body>
+  <header>
+    <marquee behavior="alternate" direction="up" height="50">
+      <marquee direction="left">じゃんけん！！！　PON!</marquee>
+    </marquee>
+    <div class="wrap">
+      <button class="button">じゃんけん！</button>
+      <button class="button_you">あなた</button>
+      <button class="button_com_hand">相手は？</button>
+      <button class="button_result">結果は？</button>
+      <input type="button" value="結果は？" onclick="myGame()">
+    </div>
+    <marquee behavior="alternate" direction="up" height="50">
+      <marquee direction="right">じゃんけん！！！　PON!</marquee>
+    </marquee>
+  </header>
+
+  <main>
+    <div id="kaisetu">ゲームの進め方
+      <p>1.<span>「じゃんけん」</span>のボタンをクリックすると、あなたと相手の手が決まります。</p>
+      <p>2.最後に、真ん中に結果が表示されます。</p>
+    </div>
+    <h1></h1>
+    <form id=select">
+      あなたの選択は　
+      <select id="mySelect">
+        <option>グー</option>
+        <option>チョキ</option>
+        <option>パー</option>
+      </select>
+      <input type="button" value="決定" onclick="myGame()">
+    </form>
+
+    <div id="box">
+
+      <div id="result">結果は？</div>
+      <div id="com_hand">相手の手は？</div>
+
+    </div>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+
+
+
+
+    // あなたを押すと#youに表示される
+    $(".button_you").on("click", function () {
+
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+
+      if (randomNumber === 0) {
+        $("#you").html('<img src="img/ぐー.png" alt="あなたはグーを出しました">');
+      } else if (randomNumber === 1) {
+        $("#you").html('<img src="img/ちょき.png" alt="あなたはチョキを出しました">');
+      } else if (randomNumber === 2) {
+        $("#you").html('<img src="img/パー.png" alt="相手はパーを出しました">');
+      }
+    });
+
+
+    function myGame() {
+      myNumber = document.getElementById("mySelect").selectedIndex;
+      hisNumber = Math.floor(Math.random() * 3);
+
+      if (hisNumber == 0) {
+        $("#you").html('<img src="img/ぐー.png" alt="あなたはグーを出しました">');
+      }
+      if (hisNumber == 1) {
+        $("#you").html('<img src="img/ちょき.png" alt="あなたはちょきを出しました">');
+      }
+      if (hisNumber == 2) {
+        $("#you").html('<img src="img/パー.png" alt="あなたはパーを出しました">');
+      }
+      if (myNumber - hisNumber == -2) {
+        $("#result").html('<img src="img/lose.png" alt="lose">');
+      }
+      if (myNumber - hisNumber == -1) {
+        $("#result").html('<img src="img/win.png" alt="win">');
+      }
+      if (myNumber - hisNumber == 0) {
+        $("#result").html('<img src="img/チャンス（draw）.png" alt="あいこ">')
+      }
+      if (myNumber - hisNumber == 1) {
+        $("#result").html('<img src="img/lose.png" alt="lose">');
+      }
+      if (myNumber - hisNumber == 2) {
+        $("#result").html('<img src="img/win.png" alt="win">');
+      }
+      document.getElementById("message1").innerHTML = "相手の選択は " + hisHand;
+      document.getElementById("message2").innerHTML = "勝敗の結果は " + judge;
+    };
+
+
+  </script>
+
+</body>
+
+</html>

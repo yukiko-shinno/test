@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/new.css">
+</head>
+
+<body>
+    <header>
+        <marquee behavior="alternate" direction="up" height="50">
+            <marquee direction="right">じゃんけん！！！　PON!</marquee>
+        </marquee>
+        <marquee behavior="alternate" direction="up" height="50">
+            <marquee direction="left">じゃんけん！！！　PON!</marquee>
+        </marquee>
+    </header>
+    <h1>ゲームの進め方</h1>
+    <p>１.あなたの出したい手を決めてください。</p>
+    <p>２.相手の手と結果が自動で表示されます。</p>
+    <div id="message1">
+        相手の選択は ？
+    </div>
+    <div id=" message2">
+        勝敗の結果は ？
+    </div>
+    <form id=select">
+        あなたの選択は　
+        <select id="mySelect">
+            <option>グー</option>
+            <option>チョキ</option>
+            <option>パー</option>
+        </select>
+        <input type="button" value="決定" onclick="myGame()">
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function ShowImage() {
+            myNumber = document.getElementById("mySelect").selectedIndex;
+            hisNumber = Math.floor(Math.random() * 3);
+            if (hisNumber == 0) {
+                document.getElementById("img").src = "ぐー.png";
+            }
+            if (hisNumber == 1) {
+                document.getElementById("img").src = "ちょき.png";
+            }
+            if (hisNumber == 2) {
+                document.getElementById("img").src = "パー.png";
+            }
+            if (myNumber - hisNumber == -2) {
+                document.getElementById("img").src = "lose.png";
+            }
+            if (myNumber - hisNumber == -1) {
+                document.getElementById("img").src = "win.png";
+            }
+            if (myNumber - hisNumber == 0) {
+                document.getElementById("img").src = "あいこ.png";
+            }
+            if (myNumber - hisNumber == 1) {
+                document.getElementById("img").src = "lose.png";
+            }
+            if (myNumber - hisNumber == 2) {
+                document.getElementById("img").src = "win.png";
+            }
+            document.getElementById("message1").innerHTML = "相手の選択は " + hisHand;
+            document.getElementById("message2").innerHTML = "勝敗の結果は " + judge;
+        }
+
+
+    </script>
+
+</body>
+
+</html>
